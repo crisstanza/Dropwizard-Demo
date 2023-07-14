@@ -3,8 +3,10 @@ package io.github.crisstanza;
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
+import io.dropwizard.views.common.ViewBundle;
 import io.github.crisstanza.health.TemplateHealthCheck;
 import io.github.crisstanza.resources.HelloWorldResource;
+import io.github.crisstanza.resources.PersonResource;
 
 public class DropwizardDemoApplication extends Application<DropwizardDemoConfiguration> {
 
@@ -19,7 +21,7 @@ public class DropwizardDemoApplication extends Application<DropwizardDemoConfigu
 
     @Override
     public void initialize(final Bootstrap<DropwizardDemoConfiguration> bootstrap) {
-        // TODO: application initialization
+        bootstrap.addBundle(new ViewBundle<>());
     }
 
     @Override
@@ -32,6 +34,8 @@ public class DropwizardDemoApplication extends Application<DropwizardDemoConfigu
         );
         environment.jersey().register(resource);
         // getting-started: HelloWorldApplication#run->HelloWorldResource
+
+        environment.jersey().register(new PersonResource());
 
         // getting-started: HelloWorldApplication#run->TemplateHealthCheck
         TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());

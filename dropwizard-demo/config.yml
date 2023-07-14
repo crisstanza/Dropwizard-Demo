@@ -6,3 +6,10 @@ logging:
 
 template: Hello, %s!
 defaultName: Stranger
+
+---
+views:
+  mustache:
+    cache: false
+  freemarker:
+    strict_syntax: true
