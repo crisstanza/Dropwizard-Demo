@@ -3,3 +3,6 @@ logging:
   level: INFO
   loggers:
     io.github.crisstanza: DEBUG
+
+template: Hello, %s!
+defaultName: Stranger
