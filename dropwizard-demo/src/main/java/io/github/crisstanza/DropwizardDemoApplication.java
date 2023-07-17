@@ -5,6 +5,7 @@ import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
 import io.dropwizard.views.common.ViewBundle;
 import io.github.crisstanza.health.TemplateHealthCheck;
+import io.github.crisstanza.resources.StaticResources;
 import io.github.crisstanza.resources.HelloWorldResource;
 import io.github.crisstanza.resources.PersonResource;
 
@@ -36,6 +37,7 @@ public class DropwizardDemoApplication extends Application<DropwizardDemoConfigu
         // getting-started: HelloWorldApplication#run->HelloWorldResource
 
         environment.jersey().register(new PersonResource());
+        environment.jersey().register(new StaticResources());
 
         // getting-started: HelloWorldApplication#run->TemplateHealthCheck
         TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());
